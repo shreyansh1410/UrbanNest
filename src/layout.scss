@@ -1,0 +1,28 @@
+@import "./responsive.scss";
+
+.layout{
+    // background-color: aqua;
+    height: 100vh;
+    max-width: 1366px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20
+    padding-right 20;
+
+
+    //write biggest first
+    @include lg{
+        background: rgb(255, 168, 168);
+        max-width: 1280px;  //to cerate whitespaces
+    }
+
+    @include md{
+        background: rgb(166, 255, 183);
+        max-width: 768px;
+    }
+
+    @include sm{
+        background: rgb(153, 143, 235);
+        max-width: 640px;
+    }
+}
