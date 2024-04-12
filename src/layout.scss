@@ -12,17 +12,17 @@
 
     //write biggest first
     @include lg{
-        background: rgb(255, 168, 168);
+        background: rgb(169, 255, 236);
         max-width: 1280px;  //to cerate whitespaces
     }
 
     @include md{
-        background: rgb(166, 255, 183);
+        background: rgb(215, 255, 223);
         max-width: 768px;
     }
 
     @include sm{
-        background: rgb(153, 143, 235);
+        background: rgb(198, 190, 255);
         max-width: 640px;
     }
 }
