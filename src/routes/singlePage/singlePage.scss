@@ -1,0 +1,10 @@
+.singlepage{
+    display: flex;
+    .details{
+        flex: 2;
+    }
+    .features{
+        flex: 3;
+        background-color: #fcf5f3;
+    }
+}
