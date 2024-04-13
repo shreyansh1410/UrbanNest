@@ -1,10 +1,9 @@
 @import "../../responsive.scss";
 
-.navbar {
+nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px; /* Adjust padding as needed */
 
   a {
     transition: all 0.4s ease;
@@ -14,6 +13,7 @@
     @include sm {
       display: none;
     }
+    z-index: 1;
   }
 
   .left {
@@ -43,9 +43,13 @@
       }
 
       img {
-        margin-right: 5px; /* Adjust margin as needed */
-        height: 30px; /* Adjust height as needed */
+        width: 28px;
       }
+
+      // img {
+      //   margin-right: 5px; /* Adjust margin as needed */
+      //   height: 30px; /* Adjust height as needed */
+      // }
     }
 
     a {
@@ -69,14 +73,14 @@
       background: inherit;
     }
 
-    a{
-      padding: 12px 24px;
+    a {
+      padding: 12px 12px;
       margin: 20px;
     }
     gap: 20px;
     height: 100%;
     .signup {
-      background: #fff943;
+      background: #fece51;
     }
 
     .menuIcon {

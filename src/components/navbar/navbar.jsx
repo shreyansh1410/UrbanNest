@@ -4,7 +4,7 @@ import "./navbar.scss";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
-    <div className="navbar">
+    <nav>
       <div className="left">
         <a href="/" className="logo">
           <img src="/logo.png"></img>
@@ -35,7 +35,7 @@ const Navbar = () => {
           <a href="/">Sign Up</a>
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 
