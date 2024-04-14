@@ -1,11 +1,32 @@
+@import "../../responsive.scss";
+
 .singlePage {
   display: flex;
+  height: 100%;
+
+  @include md{
+    flex-direction: column;
+    overflow-y: scroll;
+  }
+
   .details {
     flex: 3;
+    height: 100%;
+    overflow-y: scroll;
+
+    @include md{
+      flex: none;
+      height: max-content;
+      // overflow-y: hidden;
+      margin-bottom: 50px;
+    }
 
     .wrapper {
       padding-right: 50px;
 
+      @include sm{
+        padding-right: 0;
+      }
       .info {
         margin-top: 50px;
         .top {
@@ -53,14 +74,12 @@
               border-radius: 50%;
               object-fit: cover;
             }
-            span {
-            }
           }
         }
         .bottom {
-            margin-top: 50px;
-            color: #555;
-            line-height: 20px;
+          margin-top: 50px;
+          color: #555;
+          line-height: 20px;
         }
       }
     }
@@ -68,9 +87,115 @@
   .features {
     flex: 2;
     background-color: #fcf5f3;
+    height: 100%;
+    overflow-y: scroll;
+
+    @include md{
+      flex: none;
+      height: max-content;
+      // overflow-y: hidden;
+      margin-bottom: 50px;
+    }
 
     .wrapper {
       padding: 0px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      img {
+        height: 24px;
+        width: 24px;
+      }
+
+      .title {
+        font-weight: bold;
+        font-size: 18px;
+        // margin-bottom: px;
+      }
+
+      .feature {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        img {
+          background-color: #fece51;
+        }
+
+        .featureText {
+          span {
+            font-weight: bold;
+          }
+          p {
+            font-size: 12px;
+            font-weight: 500;
+          }
+        }
+      }
+
+      .listVertical {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        border-radius: 10px;
+        padding: 20px 10px;
+        background-color: white;
+      }
+
+      .listHorizontal {
+        display: flex;
+        justify-content: space-between;
+        border-radius: 10px;
+        padding: 20px 10px;
+        background-color: white;
+      }
+
+      .sizes {
+        display: flex;
+        padding: 20px 10px;
+        border-radius: 10px;
+        background-color: white;
+        justify-content: space-between;
+
+        .size {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          background-color: white;
+          padding: 20px 10px;
+          border-radius: 10px;
+        }
+
+        @include lg{
+          font-size: 12px;
+        }
+      }
+
+      .mapContainer {
+        width: 100%;
+        height: 200px;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+
+        button {
+          padding: 20px;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          background-color: white;
+          border: 1px solid red;
+          border-radius: 5px;
+          cursor: pointer;
+
+          img {
+            width: 16px;
+            height: 16px;
+          }
+        }
+      }
     }
   }
 }

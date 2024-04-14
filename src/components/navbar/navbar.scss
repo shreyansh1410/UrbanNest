@@ -5,6 +5,10 @@ nav {
   justify-content: space-between;
   align-items: center;
 
+  @include sm{
+    margin: 20px 0px;
+  }
+
   a {
     transition: all 0.4s ease;
     &:hover {
