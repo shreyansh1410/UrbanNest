@@ -11,7 +11,7 @@ import Layout from "./routes/layout/Layout";
 import SinglePage from "./routes/singlePage/SinglePage";
 import Login from "./routes/Login/Login";
 import ProfilePage from "./routes/ProfilePage/ProfilePage";
-import RegisterPage from "./routes/Register/Regsiter";
+import Register from "./routes/Register/Register"
 
 const router = createBrowserRouter([
   {
