@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt";
 import prisma from "../lib/prisma.js";
+import jwt from "jsonwebtoken";
 
 export const register = async (req, res) => {
   //DB OPERATIONS
@@ -51,13 +52,26 @@ export const login = async (req, res) => {
 
     // WITHOUT COOKIE-PARSER:
     // res.setHeader("set-cookie", "test=" + "myValue").json("user found!");
+    const age = 1000 * 60 * 60 * 24 * 7;
+
+    const token = jwt.sign(
+      {
+        id: user.id,
+      },
+      process.env.JWT_SECRET_KEY,
+      { expiresIn: age }
+    );
 
     //WITH COOKIE-PARSER:
 
-    res.cookie("test2", "myValue2", {
+    res
+      .cookie("token", token, {
         httpOnly: true,
-        // secure: true (!!!CANT USE IN LOCALHOST BUT MUST BE TRUE IN PRODUCTION MODE!!!)
-      }).status(200).json({ message: "Login Successfull!"});
+        // secure: true, (!!!CANT USE IN LOCALHOST BUT MUST BE TRUE IN PRODUCTION MODE!!!)
+        maxAge: age, // COOKIE EXPIRY TIME
+      })
+      .status(200)
+      .json({ message: "Login Successfull!" });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "failed to login!" });
@@ -66,4 +80,5 @@ export const login = async (req, res) => {
 
 export const logout = (req, res) => {
   //db operations
+  res.clearCookie("token").status(200).json({ message: "logout successful" });
 };
