@@ -1,11 +1,12 @@
 import { useState } from "react";
 import "./login.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import apiRequest from "../../lib/apiRequest";
 
 function Login() {
   const [err, setErr] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     //form actions in react 19
@@ -13,11 +14,9 @@ function Login() {
     setIsLoading(true);
     const formData = new FormData(e.target);
     const username = formData.get("username");
-    const email = formData.get("email");
     const password = formData.get("password");
 
     console.log(username);
-    console.log(email);
     console.log(password);
 
     try {
@@ -27,11 +26,16 @@ function Login() {
       });
 
       // USER LOGGED IN SUCCESSFULLY
-      console.log(res);
+      setErr("");
+      // console.log(res);
+
+      localStorage.setItem("user", JSON.stringify(res.data));
+      navigate("/");
+
     } catch (error) {
-      // UESR NOT CREATED SUCCESSFULLY
-      console.log(err);
-      setErr(error.res.data.message);
+      // UESR NOT LOGGED IN
+      console.log(error);
+      setErr(error.response.data.message);
     } finally {
       setIsLoading(false);
     }

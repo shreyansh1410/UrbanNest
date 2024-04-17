@@ -30,11 +30,12 @@ function Register() {
       });
 
       // USER CREATED SUCCESSFULLY
+      setErr("");
       navigate("/login");
       // console.log(res.data);
     } catch (error) {
       // UESR NOT CREATED SUCCESSFULLY
-      console.log(err);
+      console.log(error);
       setErr(error.response.data.message);
     } finally {
       setIsLoading(false);
