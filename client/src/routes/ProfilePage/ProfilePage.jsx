@@ -2,15 +2,21 @@ import { useNavigate } from "react-router-dom";
 import Chat from "../../components/Chat/Chat";
 import List from "../../components/List/List";
 import apiRequest from "../../lib/apiRequest";
-import { userData } from "../../lib/dummydata";
+// import { userData } from "../../lib/dummydata";
 import "./profilePage.scss";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 function ProfilePage() {
+  const { currentUser, updateUser } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  
   const handleLogout = async () => {
     try {
-      const res = apiRequest.post("/auth/logout");
-      localStorage.removeItem("user");
+      await apiRequest.post("/auth/logout");
+      // localStorage.removeItem("user");
+      updateUser(null);
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -26,10 +32,14 @@ function ProfilePage() {
           </div>
           <div className="info">
             <span>
-              Avatar: <img src={userData.img} alt="user image" />
+              Avatar:{" "}
+              <img
+                src={currentUser.avatar || "/noavatar.png"}
+                alt="user image"
+              />
             </span>
-            <span>Username: {userData.name}</span>
-            <span>E-Mail: johndoe@gmail.com</span>
+            <span>Username: {currentUser.username}</span>
+            <span>E-Mail: {currentUser.email}</span>
             <button onClick={handleLogout}>Log Out</button>
           </div>
           <div className="title">

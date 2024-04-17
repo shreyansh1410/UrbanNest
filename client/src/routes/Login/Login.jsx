@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./login.scss";
 import { Link, useNavigate } from "react-router-dom";
 import apiRequest from "../../lib/apiRequest";
+import { AuthContext } from "../../context/AuthContext";
 
 function Login() {
   const [err, setErr] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+
+  const { updateUser } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     //form actions in react 19
@@ -29,9 +32,9 @@ function Login() {
       setErr("");
       // console.log(res);
 
-      localStorage.setItem("user", JSON.stringify(res.data));
+      updateUser(res.data);
+      // localStorage.setItem("user", JSON.stringify(res.data));
       navigate("/");
-
     } catch (error) {
       // UESR NOT LOGGED IN
       console.log(error);
