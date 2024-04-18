@@ -19,6 +19,8 @@ function Login() {
     const username = formData.get("username");
     const password = formData.get("password");
 
+    // const { username, email } = Object.fromEntries(formData);
+
     console.log(username);
     console.log(password);
 
