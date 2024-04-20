@@ -18,12 +18,12 @@ export const getPost = async (req, res) => {
       include: {
         postDetail: true,
         user: {
-            select:{
-                username: true,
-                avatar: true,
-            }
-        }
-      }
+          select: {
+            username: true,
+            avatar: true,
+          },
+        },
+      },
     });
     res.status(200).json(post);
   } catch (err) {
@@ -41,9 +41,9 @@ export const addPost = async (req, res) => {
       data: {
         ...body.postData,
         userId: tokenUserId,
-        postDetail:{
-            create: body.postDetail,
-        }
+        postDetail: {
+          create: body.postDetail,
+        },
       },
     });
     res.status(200).json(newPost);
