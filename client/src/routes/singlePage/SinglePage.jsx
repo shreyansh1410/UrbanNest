@@ -3,13 +3,37 @@ import "./SinglePage.scss";
 import { singlePostData, userData } from "../../lib/dummydata";
 import Map from "../../components/map/Map";
 import { MapContainer } from "react-leaflet";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import DOMPurify from "dompurify";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import apiRequest from "../../lib/apiRequest";
 
 function SinglePage() {
   const post = useLoaderData();
+  const { currentUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [saved, setSaved] = useState(post.isSaved);
 
-  console.log(post);
+  const handleSave = async () => {
+
+    // AFTER REACT 19, UPDATE TO USE USEOPTIMISTIC HOOK
+
+    setSaved((prev) => !prev);
+
+
+    if (!currentUser) {
+      navigate("/login");
+    }
+    try {
+      await apiRequest.post("/users/save", { postId: post.id });
+    } catch (err) {
+      console.log(err);
+      setSaved((prev) => !prev);
+    }
+  };
+
+  // console.log(post);
   return (
     <div className="singlePage">
       <div className="details">
@@ -130,9 +154,11 @@ function SinglePage() {
               <img src="/chat.png" alt="" />
               Send a message
             </button>
-            <button>
+            <button onClick={handleSave} style={{
+              backgroundColor: saved? "#fece51" : "white"
+            }}>
               <img src="/save.png" alt="" />
-              Save the place
+              {saved ? "Place saved" : "Save the Place"}
             </button>
           </div>
         </div>
