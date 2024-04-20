@@ -4,16 +4,18 @@ import {
   getUsers,
   deleteUser,
   updateUser,
-  savePost
+  savePost,
+  profilePosts,
 } from "../controllers/user.controller.js";
 import { verifyToken } from "../middlewares/verifyToken.js";
 
 const router = express.Router();
 
 router.get("/", verifyToken, getUsers);
-router.get("/:id", verifyToken, getUser);
+// router.get("/:id", verifyToken, getUser);    THIS ROUTE WILL BE FETCHED BY THE AUTH ROUTE
 router.put("/:id", verifyToken, updateUser);
 router.delete("/:id", verifyToken, deleteUser);
-router.post("/save", verifyToken, savePost)
+router.post("/save", verifyToken, savePost);
+router.get("/profilePosts", verifyToken, profilePosts);
 
 export default router;
