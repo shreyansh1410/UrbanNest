@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 export const shouldBeLoggedIn = async (req, res) => {
-    console.log(req.userId); // using this id we can verify the user
+    // console.log(req.userId); // using this id we can verify the user
 };
 
 

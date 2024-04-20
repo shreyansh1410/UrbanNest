@@ -2,7 +2,7 @@ import prisma from "../lib/prisma.js";
 
 export const getPosts = async (req, res) => {
   const query = req.query; // COMES FROM LISTPAGELOADER.js
-  console.log(query);
+  // console.log(query);
   try {
     const posts = await prisma.post.findMany({
       where: {
@@ -16,7 +16,10 @@ export const getPosts = async (req, res) => {
         },
       },
     });
-    res.status(200).json(posts);
+
+    setTimeout(() => {
+      res.status(200).json(posts);
+    }, 3000);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "cant fetch postS!" });
