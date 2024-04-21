@@ -1,11 +1,10 @@
-// import Chat from "../../components/chat/Chat";
+import Chat from "../../components/Chat/Chat";
 import List from "../../components/List/List";
 import "./profilePage.scss";
 import apiRequest from "../../lib/apiRequest";
 import { Await, Link, useLoaderData, useNavigate } from "react-router-dom";
 import { Suspense, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import Chat from "../../components/Chat/Chat";
 
 function ProfilePage() {
   const data = useLoaderData();
@@ -75,7 +74,14 @@ function ProfilePage() {
       </div>
       <div className="chatContainer">
         <div className="wrapper">
-          <Chat/>
+          <Suspense fallback={<p>Loading...</p>}>
+            <Await
+              resolve={data.chatResponse}
+              errorElement={<p>Error loading chats!</p>}
+            >
+              {(chatResponse) => <Chat chats={chatResponse.data}/>}
+            </Await>
+          </Suspense>
         </div>
       </div>
     </div>
