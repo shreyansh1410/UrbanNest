@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import "./chat.scss";
 import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../lib/apiRequest";
@@ -9,6 +9,11 @@ function Chat({ chats }) {
   const [chat, setChat] = useState(null);
   const { currentUser } = useContext(AuthContext);
   const { socket } = useContext(SocketContext);
+  const messagesEndRef = useRef(null); // Reference to the last message element
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const handleOpenChat = async (id, receiver) => {
     try {
@@ -38,6 +43,10 @@ function Chat({ chats }) {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    scrollToBottom(); // Scroll to bottom when chat opens or messages update
+  }, [chat]);
 
   useEffect(() => {
     const read = async () => {
@@ -117,6 +126,8 @@ function Chat({ chats }) {
                 <span>{format(message.createdAt)}</span>
               </div>
             ))}
+            {/* Empty div to scroll to */}
+            <div ref={messagesEndRef} />
           </div>
           <form onSubmit={handleSubmit} className="bottom">
             <textarea name="text"></textarea>
