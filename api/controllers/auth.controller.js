@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import prisma from "../lib/prisma.js";
 import jwt from "jsonwebtoken";
+import { Domain } from "domain";
 
 export const register = async (req, res) => {
   //DB OPERATIONS
@@ -68,9 +69,11 @@ export const login = async (req, res) => {
 
     res
       .cookie("token", token, {
+        Domain: "https://urbannest-0n5i.onrender.com/",
         httpOnly: true,
         secure: true, // (!!!CANT USE IN LOCALHOST BUT MUST BE TRUE IN PRODUCTION MODE!!!)
         maxAge: age, // COOKIE EXPIRY TIME
+
       })
       .status(200)
       .json(userInfo);
