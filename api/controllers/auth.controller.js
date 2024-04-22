@@ -64,16 +64,14 @@ export const login = async (req, res) => {
       { expiresIn: age }
     );
 
-    const {password: userPassword, ...userInfo} = user;
+    const { password: userPassword, ...userInfo } = user;
     //WITH COOKIE-PARSER:
 
-    res
-      .cookie("token", token, {
-        sameSite: 'none',
+    res.cookie("token", token, {
+        sameSite: "none",
         httpOnly: true,
         secure: true, // (!!!CANT USE IN LOCALHOST BUT MUST BE TRUE IN PRODUCTION MODE!!!)
         maxAge: age, // COOKIE EXPIRY TIME
-
       })
       .status(200)
       .json(userInfo);
