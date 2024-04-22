@@ -69,7 +69,7 @@ export const login = async (req, res) => {
 
     res
       .cookie("token", token, {
-        Domain: "https://urbannest-0n5i.onrender.com/",
+        sameSite: 'none',
         httpOnly: true,
         secure: true, // (!!!CANT USE IN LOCALHOST BUT MUST BE TRUE IN PRODUCTION MODE!!!)
         maxAge: age, // COOKIE EXPIRY TIME
