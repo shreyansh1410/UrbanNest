@@ -3,7 +3,7 @@ import { Server } from "socket.io";
 const io = new Server({
   cors: {
     // origin: "http://localhost:5173",
-    origin: "https://urbannest-0n5i.onrender.com/",
+    origin: "https://urbannest-0n5i.onrender.com",
   },
 });
 

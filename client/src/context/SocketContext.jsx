@@ -9,7 +9,7 @@ export const SocketContextProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    setSocket(io("http://localhost:4000"));
+    setSocket(io("https://urbannest-socket-j0tc.onrender.com"));
   }, []);
 
   useEffect(() => {
