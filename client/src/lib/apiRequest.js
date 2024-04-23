@@ -5,6 +5,7 @@ const apiRequest = axios.create({
   baseURL: "https://urbannest-backend-6jz4.onrender.com/api",
   withCredentials: true,
   credentials: "include",
+  headers: { "Content-Type": "application/json" }
 });
 
 export default apiRequest;
