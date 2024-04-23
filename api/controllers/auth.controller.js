@@ -67,9 +67,9 @@ export const login = async (req, res) => {
     const { password: userPassword, ...userInfo } = user;
     //WITH COOKIE-PARSER:
 
-    res.cookie("token", token, {
+    res
+      .cookie("token", token, {
         sameSite: "none",
-        httpOnly: true,
         secure: true, // (!!!CANT USE IN LOCALHOST BUT MUST BE TRUE IN PRODUCTION MODE!!!)
         maxAge: age, // COOKIE EXPIRY TIME
       })
