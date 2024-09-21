@@ -21,7 +21,6 @@ function SinglePage() {
 
     setSaved((prev) => !prev);
 
-
     if (!currentUser) {
       navigate("/login");
     }
