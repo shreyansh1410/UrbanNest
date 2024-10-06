@@ -13,7 +13,6 @@ const app = express();
 app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.set("trust proxy", 1);
 
-
 app.use(express.json());
 app.use(cookieParser());
 
@@ -23,6 +22,11 @@ app.use("/api/test", testRoute);
 app.use("/api/users", userRoute);
 app.use("/api/chats", chatRoute);
 app.use("/api/messages", messageRoute);
+
+// In your server file (e.g., app.js or server.js)
+app.get("/ping", (req, res) => {
+  res.sendStatus(200); // Send HTTP 200 OK
+});
 
 app.listen(8800, () => {
   console.log("server is running at 8800");
