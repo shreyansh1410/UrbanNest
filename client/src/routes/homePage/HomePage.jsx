@@ -4,8 +4,7 @@ import "./HomePage.scss";
 import { AuthContext } from "../../context/AuthContext";
 
 function HomePage() {
-
-  const {currentUser} = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
   console.log(currentUser);
   return (
     <div className="homePage">
@@ -35,7 +34,7 @@ function HomePage() {
           </div>
         </div>
       </div>
-      <div className="imgContainer">
+      <div className="imgContainer z-{-1}">
         <img src="/bg.png" alt="" />
       </div>
     </div>
