@@ -14,7 +14,7 @@ const Navbar = () => {
   if(currentUser) fetch();  // TO PREVENT UNNECESSARY API REQUESTS
   // const user = true;
   return (
-    <nav className="z-20">
+    <nav >
       <div className="left">
         <a href="/" className="logo">
           <img src="/logo.png"></img>
@@ -38,10 +38,10 @@ const Navbar = () => {
           </div>
         ) : (
           <>
-            <a href="/login" className="z-20">
+            <a href="/login" className="login">
               Sign In
             </a>
-            <a href="/register" className="signup z-20">
+            <a href="/register" className="signup">
               Sign Up
             </a>
           </>
